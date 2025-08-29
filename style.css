@@ -1,7 +1,9 @@
-/* CSS Sixteen — Footer Fix & Font Hierarchy Lock */
+/* CSS Seventeen — Font Hierarchy & Footer Fix */
+
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
 
 body {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Didact Gothic', sans-serif;
   background-image: url('background.png');
   background-size: cover;
   background-position: center;
@@ -10,7 +12,7 @@ body {
   color: #1F242E;
   margin: 0;
   padding: 0;
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.6;
   letter-spacing: 0.2px;
 }
@@ -28,15 +30,15 @@ h1 {
 }
 
 h2 {
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 26px;
+  font-weight: 700;
   margin-top: 0;
   margin-bottom: 1.2em;
 }
 
 /* Intro Text Block */
 .intro {
-  font-size: 20px;
+  font-size: 21px;
   max-width: 800px;
   margin: 0 auto 3rem auto;
   text-align: center;
@@ -76,12 +78,13 @@ main {
   margin: 0 auto;
 }
 
-/* TEXT BESIDE BOOKS — should be SMALL + TIGHT */
+/* TEXT BESIDE BOOKS — clear body style */
 .content-block .text {
-  font-size: 16px;
+  font-size: 18px;
   letter-spacing: 0.1px;
   line-height: 1.6;
   padding: 1rem;
+  font-weight: 400;
 }
 
 /* REVERSE Block Option */
@@ -97,13 +100,13 @@ main {
   margin-top: 4rem;
 }
 
-/* Updated Footer */
+/* Footer — MATCHES BODY TEXT */
 footer {
   text-align: center;
   padding: 2.5rem 1rem 2rem 1rem;
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 400;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.2px;
   color: #1F242E;
   background: transparent;
 }
@@ -125,23 +128,27 @@ footer a:hover {
   }
 
   h2 {
-    font-size: 22px;
+    font-size: 24px;
   }
 
   .intro {
-    font-size: 19px;
+    font-size: 20px;
   }
 
   body {
-    font-size: 16px;
+    font-size: 17px;
   }
 
   .content-block .text {
-    font-size: 15px;
+    font-size: 17px;
   }
 
   .content-block .image img {
     max-width: 220px;
+  }
+
+  footer {
+    font-size: 17px;
   }
 }
 
@@ -151,18 +158,22 @@ footer a:hover {
   }
 
   h2 {
-    font-size: 20px;
+    font-size: 22px;
   }
 
   .intro {
-    font-size: 18px;
+    font-size: 19px;
   }
 
   .content-block .text {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .content-block .image img {
     max-width: 200px;
+  }
+
+  footer {
+    font-size: 16px;
   }
 }
