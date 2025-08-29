@@ -2,7 +2,7 @@
 body {
   font-family: 'Cormorant Garamond', serif;
   color: #1F242E;
-  font-size: 22px; /* was 20px */
+  font-size: 22px;
   margin: 0;
   padding: 0;
   line-height: 1.8;
@@ -20,13 +20,13 @@ header {
 }
 
 h1 {
-  font-size: 40px;
+  font-size: 42px;
   font-weight: 600;
   margin: 0.3em 0 0.2em 0;
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 400;
   margin: 0;
 }
@@ -41,6 +41,7 @@ main {
   max-width: 800px;
   margin: 0 auto 3rem auto;
   text-align: center;
+  font-size: 24px;
 }
 
 /* Content Blocks */
@@ -59,18 +60,19 @@ main {
   max-width: 500px;
 }
 
-/* NEW: Limit image size so it doesn’t overwhelm */
+/* Proper Image Handling */
 .content-block .image img {
   width: 100%;
-  max-width: 400px;
+  max-width: 360px;
   height: auto;
   display: block;
   margin: 0 auto;
+  border-radius: 4px;
 }
 
-/* Updated: Bigger text and more breathing room */
+/* Text Blocks */
 .content-block .text {
-  font-size: 24px; /* was 19px */
+  font-size: 24px;
   padding: 1rem;
 }
 
@@ -83,7 +85,7 @@ main {
 .coming-soon {
   text-align: center;
   font-style: italic;
-  font-size: 20px;
+  font-size: 22px;
   margin-top: 4rem;
 }
 
@@ -107,7 +109,7 @@ footer a:hover {
 /* Responsive tweaks */
 @media (max-width: 768px) {
   h1 {
-    font-size: 34px;
+    font-size: 36px;
   }
 
   h2 {
@@ -125,6 +127,10 @@ footer a:hover {
   .content-block .text {
     font-size: 22px;
   }
+
+  .content-block .image img {
+    max-width: 300px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -133,6 +139,10 @@ footer a:hover {
   }
 
   .content-block .text {
-    font-size: 19px;
+    font-size: 20px;
+  }
+
+  .content-block .image img {
+    max-width: 260px;
   }
 }
