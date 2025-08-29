@@ -1,4 +1,4 @@
-/* CSS Twenty — Footer Fix, Body Font Correction, Subtitle Margin Fix */
+/* CSS Twenty-One — Removes unwanted background box + keeps fonts correct */
 
 body {
   font-family: 'Cormorant Garamond', serif;
@@ -10,15 +10,15 @@ body {
   color: #1F242E;
   margin: 0;
   padding: 0;
-  font-size: 19px; /* BOOSTED */
+  font-size: 19px;
   line-height: 1.7;
   letter-spacing: 0.2px;
+  background-color: transparent;
 }
 
-/* Header area */
 header {
   text-align: center;
-  padding: 2.5rem 1rem 0.5rem 1rem; /* Reduced bottom space */
+  padding: 2.5rem 1rem 0.5rem 1rem;
 }
 
 h1 {
@@ -27,24 +27,22 @@ h1 {
   margin-bottom: 0.2rem;
 }
 
-/* subtitle line below name */
 .intro {
-  font-size: 20px; /* Remains LARGER than body */
+  font-size: 20px;
   font-weight: 400;
   margin-top: 0;
-  margin-bottom: 1.8rem; /* Tightened vertical space */
+  margin-bottom: 1.8rem;
   letter-spacing: 0.3px;
   line-height: 1.5;
   text-align: center;
 }
 
-/* Main prose block */
 main {
   padding: 1rem 4vw 4rem 4vw;
   background: transparent;
 }
 
-/* Book layout section */
+/* ✂️ The block where the white box was — cleaned out */
 .content-block {
   display: flex;
   flex-wrap: wrap;
@@ -52,12 +50,14 @@ main {
   justify-content: center;
   margin-bottom: 4rem;
   gap: 2rem;
+  background: transparent !important; /* ⛔ FORCE IT TRANSPARENT */
 }
 
 .content-block .image,
 .content-block .text {
   flex: 1 1 400px;
   max-width: 500px;
+  background: transparent;
 }
 
 .content-block .image img {
@@ -69,10 +69,11 @@ main {
 }
 
 .content-block .text {
-  font-size: 19px; /* MATCH BODY */
+  font-size: 19px;
   letter-spacing: 0.1px;
   line-height: 1.7;
   padding: 1rem;
+  background: transparent;
 }
 
 .content-block.reverse {
@@ -85,13 +86,14 @@ main {
   font-style: italic;
   font-size: 17px;
   margin-top: 4rem;
+  background: transparent;
 }
 
-/* FOOTER — LOCKED TO MATCH BODY */
+/* Footer — fixed size and clean */
 footer {
   text-align: center;
   padding: 2.5rem 1rem 2rem 1rem;
-  font-size: 19px; /* SAME AS BODY */
+  font-size: 19px;
   font-weight: 400;
   letter-spacing: 0.3px;
   color: #1F242E;
@@ -108,7 +110,7 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* Responsive tweaks */
+/* Responsive adjustments */
 @media (max-width: 768px) {
   h1 {
     font-size: 36px;
