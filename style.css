@@ -1,57 +1,57 @@
-/* CSS Fourteen — Proper Hierarchy with Tagline, Intro, Body */
-/* Base Styling */
+/* CSS Fifteen — Hard Lock on Font Hierarchy */
+
 body {
   font-family: 'Cormorant Garamond', serif;
-  color: #1F242E;
-  font-size: 17px;
-  letter-spacing: 0.2px;
-  margin: 0;
-  padding: 0;
-  line-height: 1.65;
   background-image: url('background.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  color: #1F242E;
+  margin: 0;
+  padding: 0;
+  font-size: 17px;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
 }
 
-/* Header */
+/* Header Block */
 header {
   text-align: center;
-  padding: 2.5rem 1rem 1rem 1rem;
+  padding: 2rem 1rem 1rem 1rem;
 }
 
 h1 {
-  font-size: 38px;
+  font-size: 42px;
   font-weight: 600;
-  margin: 0.3em 0 0.2em 0;
+  margin-bottom: 0.2em;
 }
 
-/* Tagline (writing · literature · clarity) — bigger + bold */
 h2 {
   font-size: 24px;
   font-weight: 600;
-  margin: 0.2em 0 1em 0;
+  margin-top: 0;
+  margin-bottom: 1.2em;
 }
 
-/* Intro Block Text (under tagline) */
+/* Intro Text Block */
 .intro {
+  font-size: 20px;
   max-width: 800px;
   margin: 0 auto 3rem auto;
   text-align: center;
-  font-size: 21px;
-  font-weight: 400;
-  line-height: 1.75;
+  line-height: 1.7;
   letter-spacing: 0.3px;
+  font-weight: 400;
 }
 
-/* Main Content */
+/* Main Content Area */
 main {
   padding: 1rem 4vw 4rem 4vw;
   background: transparent;
 }
 
-/* Content Blocks */
+/* Content Block Containers */
 .content-block {
   display: flex;
   flex-wrap: wrap;
@@ -67,33 +67,33 @@ main {
   max-width: 500px;
 }
 
-/* Images — restrained at all sizes */
+/* BOOK IMAGE SIZE */
 .content-block .image img {
   width: 100%;
-  max-width: 320px;
+  max-width: 300px;
   height: auto;
   display: block;
   margin: 0 auto;
 }
 
-/* Text block beside book covers — calm and small */
+/* TEXT BESIDE BOOKS — should be SMALL + TIGHT */
 .content-block .text {
-  font-size: 17px;
+  font-size: 16px;
   letter-spacing: 0.1px;
-  padding: 1rem;
   line-height: 1.6;
+  padding: 1rem;
 }
 
-/* Flip layout if reverse */
+/* REVERSE Block Option */
 .content-block.reverse {
   flex-direction: row-reverse;
 }
 
-/* Coming Soon Section */
+/* Coming Soon */
 .coming-soon {
   text-align: center;
   font-style: italic;
-  font-size: 17px;
+  font-size: 16px;
   margin-top: 4rem;
 }
 
@@ -101,9 +101,9 @@ main {
 footer {
   text-align: center;
   padding: 2rem 1rem 1rem 1rem;
-  font-size: 16px;
-  color: #1F242E;
+  font-size: 15px;
   background: transparent;
+  color: #1F242E;
 }
 
 footer a {
@@ -116,10 +116,10 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* Responsive tweaks */
+/* Mobile & Tablet Adjustments */
 @media (max-width: 768px) {
   h1 {
-    font-size: 32px;
+    font-size: 36px;
   }
 
   h2 {
@@ -127,27 +127,27 @@ footer a:hover {
   }
 
   .intro {
-    font-size: 20px;
+    font-size: 19px;
   }
 
   body {
     font-size: 16px;
   }
 
-  .content-block {
-    flex-direction: column;
-  }
-
   .content-block .text {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .content-block .image img {
-    max-width: 240px;
+    max-width: 220px;
   }
 }
 
 @media (max-width: 480px) {
+  h1 {
+    font-size: 30px;
+  }
+
   h2 {
     font-size: 20px;
   }
@@ -157,7 +157,7 @@ footer a:hover {
   }
 
   .content-block .text {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .content-block .image img {
