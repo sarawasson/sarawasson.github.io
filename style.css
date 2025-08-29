@@ -1,11 +1,11 @@
 /* Base Styling */
 body {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
   color: #1F242E;
   font-size: 20px;
   margin: 0;
   padding: 0;
-  line-height: 1.6;
+  line-height: 1.7;
   background-image: url('background.png');
   background-size: cover;
   background-position: center;
@@ -16,13 +16,13 @@ body {
 /* Header */
 header {
   text-align: center;
-  padding: 2rem 1rem 1rem 1rem;
+  padding: 2.5rem 1rem 1.5rem 1rem;
 }
 
 h1 {
-  font-size: 38px;
-  margin: 0.3em 0 0.2em 0;
+  font-size: 40px;
   font-weight: 600;
+  margin: 0.3em 0 0.2em 0;
 }
 
 h2 {
@@ -33,7 +33,7 @@ h2 {
 
 /* Main Content */
 main {
-  padding: 1rem 3vw 3rem 3vw;
+  padding: 1rem 4vw 4rem 4vw;
 }
 
 /* Intro Text */
@@ -57,6 +57,10 @@ main {
 .content-block .text {
   flex: 1 1 400px;
   max-width: 500px;
+}
+
+.content-block .text {
+  font-size: 19px;
 }
 
 /* Flip layout if reverse */
@@ -92,7 +96,7 @@ footer a:hover {
 /* Responsive tweaks */
 @media (max-width: 768px) {
   h1 {
-    font-size: 32px;
+    font-size: 34px;
   }
 
   h2 {
@@ -105,5 +109,9 @@ footer a:hover {
 
   .content-block {
     flex-direction: column;
+  }
+
+  .content-block .text {
+    font-size: 18px;
   }
 }
