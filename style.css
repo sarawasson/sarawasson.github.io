@@ -1,4 +1,4 @@
-/* CSS Twenty-One — Removes unwanted background box + keeps fonts correct */
+/* CSS Twenty-Two — Fixes footer size, body clarity, h2 spacing, and keeps transparency clean */
 
 body {
   font-family: 'Cormorant Garamond', serif;
@@ -27,6 +27,13 @@ h1 {
   margin-bottom: 0.2rem;
 }
 
+h2 {
+  font-size: 21px;
+  font-weight: 500;
+  margin-bottom: 0.2rem; /* Tighten subtitle */
+  letter-spacing: 0.4px;
+}
+
 .intro {
   font-size: 20px;
   font-weight: 400;
@@ -35,6 +42,7 @@ h1 {
   letter-spacing: 0.3px;
   line-height: 1.5;
   text-align: center;
+  padding-top: 0;
 }
 
 main {
@@ -42,7 +50,7 @@ main {
   background: transparent;
 }
 
-/* ✂️ The block where the white box was — cleaned out */
+/* ✂️ White box fix still active */
 .content-block {
   display: flex;
   flex-wrap: wrap;
@@ -50,7 +58,7 @@ main {
   justify-content: center;
   margin-bottom: 4rem;
   gap: 2rem;
-  background: transparent !important; /* ⛔ FORCE IT TRANSPARENT */
+  background: transparent !important;
 }
 
 .content-block .image,
@@ -89,11 +97,11 @@ main {
   background: transparent;
 }
 
-/* Footer — fixed size and clean */
+/* 🔧 Footer — now full size match */
 footer {
   text-align: center;
   padding: 2.5rem 1rem 2rem 1rem;
-  font-size: 19px;
+  font-size: 19px; /* Matches body text */
   font-weight: 400;
   letter-spacing: 0.3px;
   color: #1F242E;
@@ -110,10 +118,14 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* Responsive adjustments */
+/* 📱 Responsive adjustments — keep subtle and smooth */
 @media (max-width: 768px) {
   h1 {
     font-size: 36px;
+  }
+
+  h2 {
+    font-size: 20px;
   }
 
   .intro {
@@ -141,6 +153,10 @@ footer a:hover {
 @media (max-width: 480px) {
   h1 {
     font-size: 30px;
+  }
+
+  h2 {
+    font-size: 19px;
   }
 
   .intro {
