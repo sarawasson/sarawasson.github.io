@@ -1,108 +1,109 @@
-
-/* Global styles */
+/* Base Styling */
 body {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', serif;
   color: #1F242E;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
   background-image: url('background.png');
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center;
-  margin: 0;
-  padding: 0 2rem;
-}
-
-main {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0;
 }
 
 /* Header */
 header {
-  padding-top: 2rem;
   text-align: center;
+  padding: 2rem 1rem 1rem 1rem;
 }
 
-header h1 {
-  font-size: 2.5rem;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
+h1 {
+  font-size: 38px;
+  margin: 0.3em 0 0.2em 0;
+  font-weight: 600;
 }
 
-header h2 {
-  font-size: 1.5rem;
-  font-weight: 300;
-  margin-top: 0;
+h2 {
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0;
 }
 
-/* Intro */
+/* Main Content */
+main {
+  padding: 1rem 3vw 3rem 3vw;
+}
+
+/* Intro Text */
 .intro {
-  margin-top: 1rem;
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
   text-align: center;
-  font-size: 1.2rem;
-  line-height: 1.6;
 }
 
-/* Content blocks */
+/* Content Blocks */
 .content-block {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  margin: 2rem 0;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4rem;
+  gap: 2rem;
 }
 
-.content-block .image {
-  flex: 1 1 40%;
-}
-
-.content-block .image img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
+.content-block .image,
 .content-block .text {
-  flex: 1 1 55%;
-  font-size: 1.1rem;
-  line-height: 1.6;
+  flex: 1 1 400px;
+  max-width: 500px;
 }
 
-/* Reverse layout for second section */
+/* Flip layout if reverse */
 .content-block.reverse {
   flex-direction: row-reverse;
 }
 
-/* Articles list */
-.content-block ul {
-  padding-left: 1.2rem;
-}
-
-.content-block li {
-  margin-bottom: 0.8rem;
-}
-
-/* Coming Soon */
+/* Coming Soon Section */
 .coming-soon {
   text-align: center;
   font-style: italic;
-  margin: 3rem 0;
+  font-size: 18px;
+  margin-top: 4rem;
 }
 
 /* Footer */
 footer {
   text-align: center;
-  padding: 2rem 0;
-  font-size: 0.95rem;
+  padding: 2rem 1rem 1rem 1rem;
+  font-size: 16px;
 }
 
 footer a {
   color: #1F242E;
   text-decoration: none;
+  margin: 0 0.5rem;
 }
 
 footer a:hover {
   text-decoration: underline;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  body {
+    font-size: 18px;
+  }
+
+  .content-block {
+    flex-direction: column;
+  }
 }
