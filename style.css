@@ -1,4 +1,4 @@
-/* CSS Twenty-Two — Fixes footer size, body clarity, h2 spacing, and keeps transparency clean */
+/* CSS 23 — Final integrated version with email callout block above footer */
 
 body {
   font-family: 'Cormorant Garamond', serif;
@@ -30,7 +30,7 @@ h1 {
 h2 {
   font-size: 21px;
   font-weight: 500;
-  margin-bottom: 0.2rem; /* Tighten subtitle */
+  margin-bottom: 0.2rem;
   letter-spacing: 0.4px;
 }
 
@@ -50,7 +50,7 @@ main {
   background: transparent;
 }
 
-/* ✂️ White box fix still active */
+/* Content block */
 .content-block {
   display: flex;
   flex-wrap: wrap;
@@ -88,7 +88,7 @@ main {
   flex-direction: row-reverse;
 }
 
-/* "Coming soon" line */
+/* Coming soon line */
 .coming-soon {
   text-align: center;
   font-style: italic;
@@ -97,11 +97,40 @@ main {
   background: transparent;
 }
 
-/* 🔧 Footer — now full size match */
+/* Email callout block */
+.email-callout {
+  text-align: center;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: #1F242E;
+}
+
+.email-callout a {
+  color: #1F242E;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 21px;
+}
+
+.email-callout a:hover {
+  text-decoration: underline;
+}
+
+.footer-divider {
+  border: none;
+  border-top: 1px solid #1F242E;
+  width: 40%;
+  margin: 2rem auto;
+}
+
+/* Footer links */
 footer {
   text-align: center;
   padding: 2.5rem 1rem 2rem 1rem;
-  font-size: 19px; /* Matches body text */
+  font-size: 19px;
   font-weight: 400;
   letter-spacing: 0.3px;
   color: #1F242E;
@@ -118,7 +147,7 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* 📱 Responsive adjustments — keep subtle and smooth */
+/* Responsive */
 @media (max-width: 768px) {
   h1 {
     font-size: 36px;
@@ -147,6 +176,14 @@ footer a:hover {
 
   .content-block .image img {
     max-width: 220px;
+  }
+
+  .email-callout {
+    font-size: 20px;
+  }
+
+  .email-callout a {
+    font-size: 20px;
   }
 }
 
@@ -178,5 +215,13 @@ footer a:hover {
 
   .content-block .image img {
     max-width: 200px;
+  }
+
+  .email-callout {
+    font-size: 19px;
+  }
+
+  .email-callout a {
+    font-size: 19px;
   }
 }
