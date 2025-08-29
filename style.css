@@ -1,9 +1,7 @@
-/* CSS Seventeen — Font Hierarchy & Footer Fix */
-
-@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+/* CSS Eighteen — Font, Footer, Flow */
 
 body {
-  font-family: 'Didact Gothic', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   background-image: url('background.png');
   background-size: cover;
   background-position: center;
@@ -12,12 +10,12 @@ body {
   color: #1F242E;
   margin: 0;
   padding: 0;
-  font-size: 18px;
+  font-size: 17px;
   line-height: 1.6;
   letter-spacing: 0.2px;
 }
 
-/* Header Block */
+/* Header */
 header {
   text-align: center;
   padding: 2rem 1rem 1rem 1rem;
@@ -30,15 +28,15 @@ h1 {
 }
 
 h2 {
-  font-size: 26px;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 600;
   margin-top: 0;
   margin-bottom: 1.2em;
 }
 
-/* Intro Text Block */
+/* Intro Text */
 .intro {
-  font-size: 21px;
+  font-size: 20px;
   max-width: 800px;
   margin: 0 auto 3rem auto;
   text-align: center;
@@ -47,13 +45,13 @@ h2 {
   font-weight: 400;
 }
 
-/* Main Content Area */
+/* Main content */
 main {
   padding: 1rem 4vw 4rem 4vw;
   background: transparent;
 }
 
-/* Content Block Containers */
+/* Content Blocks */
 .content-block {
   display: flex;
   flex-wrap: wrap;
@@ -69,7 +67,7 @@ main {
   max-width: 500px;
 }
 
-/* BOOK IMAGE SIZE */
+/* Book image size */
 .content-block .image img {
   width: 100%;
   max-width: 300px;
@@ -78,21 +76,20 @@ main {
   margin: 0 auto;
 }
 
-/* TEXT BESIDE BOOKS — clear body style */
+/* Book text */
 .content-block .text {
-  font-size: 18px;
+  font-size: 17px;
   letter-spacing: 0.1px;
   line-height: 1.6;
   padding: 1rem;
-  font-weight: 400;
 }
 
-/* REVERSE Block Option */
+/* Reverse layout */
 .content-block.reverse {
   flex-direction: row-reverse;
 }
 
-/* Coming Soon */
+/* Coming Soon text */
 .coming-soon {
   text-align: center;
   font-style: italic;
@@ -100,13 +97,13 @@ main {
   margin-top: 4rem;
 }
 
-/* Footer — MATCHES BODY TEXT */
+/* Footer */
 footer {
   text-align: center;
   padding: 2.5rem 1rem 2rem 1rem;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 400;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.3px;
   color: #1F242E;
   background: transparent;
 }
@@ -121,40 +118,10 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* Mobile & Tablet Adjustments */
+/* Mobile + Tablet Tweaks */
 @media (max-width: 768px) {
   h1 {
     font-size: 36px;
-  }
-
-  h2 {
-    font-size: 24px;
-  }
-
-  .intro {
-    font-size: 20px;
-  }
-
-  body {
-    font-size: 17px;
-  }
-
-  .content-block .text {
-    font-size: 17px;
-  }
-
-  .content-block .image img {
-    max-width: 220px;
-  }
-
-  footer {
-    font-size: 17px;
-  }
-}
-
-@media (max-width: 480px) {
-  h1 {
-    font-size: 30px;
   }
 
   h2 {
@@ -165,15 +132,37 @@ footer a:hover {
     font-size: 19px;
   }
 
+  body {
+    font-size: 17px;
+  }
+
   .content-block .text {
     font-size: 16px;
   }
 
   .content-block .image img {
-    max-width: 200px;
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 30px;
   }
 
-  footer {
-    font-size: 16px;
+  h2 {
+    font-size: 20px;
+  }
+
+  .intro {
+    font-size: 18px;
+  }
+
+  .content-block .text {
+    font-size: 15px;
+  }
+
+  .content-block .image img {
+    max-width: 200px;
   }
 }
