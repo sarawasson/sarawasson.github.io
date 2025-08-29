@@ -1,4 +1,4 @@
-/* CSS Eighteen — Font, Footer, Flow */
+/* CSS Nineteen — Footer Fix, Body Size Lock, Spacing Correction */
 
 body {
   font-family: 'Cormorant Garamond', serif;
@@ -10,31 +10,31 @@ body {
   color: #1F242E;
   margin: 0;
   padding: 0;
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.6;
   letter-spacing: 0.2px;
 }
 
-/* Header */
+/* Header Block */
 header {
   text-align: center;
-  padding: 2rem 1rem 1rem 1rem;
+  padding: 2rem 1rem 0.5rem 1rem; /* Reduced bottom space */
 }
 
 h1 {
   font-size: 42px;
   font-weight: 600;
-  margin-bottom: 0.2em;
+  margin-bottom: 0.1em;
 }
 
 h2 {
   font-size: 24px;
   font-weight: 600;
   margin-top: 0;
-  margin-bottom: 1.2em;
+  margin-bottom: 0.8em;
 }
 
-/* Intro Text */
+/* Intro subtitle block */
 .intro {
   font-size: 20px;
   max-width: 800px;
@@ -45,13 +45,13 @@ h2 {
   font-weight: 400;
 }
 
-/* Main content */
+/* Main content block */
 main {
   padding: 1rem 4vw 4rem 4vw;
   background: transparent;
 }
 
-/* Content Blocks */
+/* Book section layout */
 .content-block {
   display: flex;
   flex-wrap: wrap;
@@ -67,7 +67,6 @@ main {
   max-width: 500px;
 }
 
-/* Book image size */
 .content-block .image img {
   width: 100%;
   max-width: 300px;
@@ -76,7 +75,6 @@ main {
   margin: 0 auto;
 }
 
-/* Book text */
 .content-block .text {
   font-size: 17px;
   letter-spacing: 0.1px;
@@ -84,12 +82,11 @@ main {
   padding: 1rem;
 }
 
-/* Reverse layout */
 .content-block.reverse {
   flex-direction: row-reverse;
 }
 
-/* Coming Soon text */
+/* Coming Soon italic */
 .coming-soon {
   text-align: center;
   font-style: italic;
@@ -97,11 +94,11 @@ main {
   margin-top: 4rem;
 }
 
-/* Footer */
+/* Footer block — now matches body */
 footer {
   text-align: center;
   padding: 2.5rem 1rem 2rem 1rem;
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 400;
   letter-spacing: 0.3px;
   color: #1F242E;
@@ -118,7 +115,7 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* Mobile + Tablet Tweaks */
+/* Responsive: Tablet and Mobile */
 @media (max-width: 768px) {
   h1 {
     font-size: 36px;
@@ -133,6 +130,10 @@ footer a:hover {
   }
 
   body {
+    font-size: 17px;
+  }
+
+  footer {
     font-size: 17px;
   }
 
@@ -164,5 +165,9 @@ footer a:hover {
 
   .content-block .image img {
     max-width: 200px;
+  }
+
+  footer {
+    font-size: 16px;
   }
 }
