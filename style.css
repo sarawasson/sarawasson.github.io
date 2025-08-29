@@ -1,100 +1,108 @@
 
 /* Global styles */
 body {
-  margin: 0;
   font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  letter-spacing: 0.4px;
-  line-height: 1.8;
-  color: #2c2c2c;
-  background: url('background.png') no-repeat center center fixed;
+  color: #1F242E;
+  background-image: url('background.png');
   background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  margin: 0;
+  padding: 0 2rem;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
 }
 
 /* Header */
 header {
+  padding-top: 2rem;
   text-align: center;
-  padding: 80px 20px 40px;
 }
 
 header h1 {
-  font-weight: 600;
-  font-size: 2.6rem;
-  margin-bottom: 10px;
-  letter-spacing: 1px;
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
 }
 
 header h2 {
+  font-size: 1.5rem;
   font-weight: 300;
-  font-size: 1.4rem;
-  letter-spacing: 2px;
-  color: #555;
+  margin-top: 0;
 }
 
-/* Intro paragraph */
+/* Intro */
 .intro {
-  max-width: 750px;
-  margin: 0 auto 60px;
+  margin-top: 1rem;
   text-align: center;
+  font-size: 1.2rem;
+  line-height: 1.6;
 }
 
-/* Alternating content blocks */
+/* Content blocks */
 .content-block {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 40px;
-  max-width: 1000px;
-  margin: 0 auto 80px;
-  padding: 0 20px;
+  gap: 2rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
 }
 
+.content-block .image {
+  flex: 1 1 40%;
+}
+
+.content-block .image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.content-block .text {
+  flex: 1 1 55%;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Reverse layout for second section */
 .content-block.reverse {
   flex-direction: row-reverse;
 }
 
-.content-block img {
-  max-width: 400px;
-  width: 100%;
-  border-radius: 6px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+/* Articles list */
+.content-block ul {
+  padding-left: 1.2rem;
 }
 
-.content-block .text {
-  flex: 1;
+.content-block li {
+  margin-bottom: 0.8rem;
 }
 
-/* Article links */
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-ul li {
-  margin-bottom: 12px;
-}
-
-ul li a {
-  text-decoration: none;
-  color: #2e4a6d;
-  border-bottom: 1px solid rgba(46, 74, 109, 0.3);
-}
-
-ul li a:hover {
-  border-bottom-color: #2e4a6d;
-}
-
-/* Coming soon */
+/* Coming Soon */
 .coming-soon {
   text-align: center;
-  margin: 80px 0;
   font-style: italic;
+  margin: 3rem 0;
 }
 
 /* Footer */
 footer {
   text-align: center;
-  padding: 40px 20px;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
+  padding: 2rem 0;
+  font-size: 0.95rem;
+}
+
+footer a {
+  color: #1F242E;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
