@@ -1,4 +1,4 @@
-/* CSS Nineteen — Footer Fix, Body Size Lock, Spacing Correction */
+/* CSS Twenty — Footer Fix, Body Font Correction, Subtitle Margin Fix */
 
 body {
   font-family: 'Cormorant Garamond', serif;
@@ -10,48 +10,41 @@ body {
   color: #1F242E;
   margin: 0;
   padding: 0;
-  font-size: 18px;
-  line-height: 1.6;
+  font-size: 19px; /* BOOSTED */
+  line-height: 1.7;
   letter-spacing: 0.2px;
 }
 
-/* Header Block */
+/* Header area */
 header {
   text-align: center;
-  padding: 2rem 1rem 0.5rem 1rem; /* Reduced bottom space */
+  padding: 2.5rem 1rem 0.5rem 1rem; /* Reduced bottom space */
 }
 
 h1 {
   font-size: 42px;
   font-weight: 600;
-  margin-bottom: 0.1em;
+  margin-bottom: 0.2rem;
 }
 
-h2 {
-  font-size: 24px;
-  font-weight: 600;
-  margin-top: 0;
-  margin-bottom: 0.8em;
-}
-
-/* Intro subtitle block */
+/* subtitle line below name */
 .intro {
-  font-size: 20px;
-  max-width: 800px;
-  margin: 0 auto 3rem auto;
-  text-align: center;
-  line-height: 1.7;
-  letter-spacing: 0.3px;
+  font-size: 20px; /* Remains LARGER than body */
   font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 1.8rem; /* Tightened vertical space */
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+  text-align: center;
 }
 
-/* Main content block */
+/* Main prose block */
 main {
   padding: 1rem 4vw 4rem 4vw;
   background: transparent;
 }
 
-/* Book section layout */
+/* Book layout section */
 .content-block {
   display: flex;
   flex-wrap: wrap;
@@ -76,9 +69,9 @@ main {
 }
 
 .content-block .text {
-  font-size: 17px;
+  font-size: 19px; /* MATCH BODY */
   letter-spacing: 0.1px;
-  line-height: 1.6;
+  line-height: 1.7;
   padding: 1rem;
 }
 
@@ -86,19 +79,19 @@ main {
   flex-direction: row-reverse;
 }
 
-/* Coming Soon italic */
+/* "Coming soon" line */
 .coming-soon {
   text-align: center;
   font-style: italic;
-  font-size: 16px;
+  font-size: 17px;
   margin-top: 4rem;
 }
 
-/* Footer block — now matches body */
+/* FOOTER — LOCKED TO MATCH BODY */
 footer {
   text-align: center;
   padding: 2.5rem 1rem 2rem 1rem;
-  font-size: 18px;
+  font-size: 19px; /* SAME AS BODY */
   font-weight: 400;
   letter-spacing: 0.3px;
   color: #1F242E;
@@ -115,30 +108,27 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* Responsive: Tablet and Mobile */
+/* Responsive tweaks */
 @media (max-width: 768px) {
   h1 {
     font-size: 36px;
   }
 
-  h2 {
-    font-size: 22px;
-  }
-
   .intro {
-    font-size: 19px;
+    font-size: 20px;
+    margin-bottom: 1.5rem;
   }
 
   body {
-    font-size: 17px;
+    font-size: 18px;
   }
 
   footer {
-    font-size: 17px;
+    font-size: 18px;
   }
 
   .content-block .text {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .content-block .image img {
@@ -151,23 +141,24 @@ footer a:hover {
     font-size: 30px;
   }
 
-  h2 {
-    font-size: 20px;
+  .intro {
+    font-size: 19px;
+    margin-bottom: 1.2rem;
   }
 
-  .intro {
-    font-size: 18px;
+  body {
+    font-size: 17px;
+  }
+
+  footer {
+    font-size: 17px;
   }
 
   .content-block .text {
-    font-size: 15px;
+    font-size: 17px;
   }
 
   .content-block .image img {
     max-width: 200px;
-  }
-
-  footer {
-    font-size: 16px;
   }
 }
