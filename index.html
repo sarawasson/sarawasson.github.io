@@ -92,8 +92,12 @@
 
 <footer>
   <hr class="footer-divider">
-  <p class="footer-callout">Questions or collaborations?<br>
-    <a href="mailto:sara@example.com">Email me</a>
+
+<div class="email-callout">
+  <hr class="footer-divider">
+  <p>Questions or collaborations?</p>
+  <p><a href="#" id="email-link">Email me</a></p>
+</div>
   </p>
 
   <p class="footer-links">
@@ -102,6 +106,14 @@
     <a href="https://www.instagram.com/sara.wasson.words/" target="_blank">@sara.wasson.words</a>
   </p>
 </footer>
+
+<script>
+  document.getElementById('email-link').addEventListener('click', function() {
+    const user = 'sarawasson';
+    const domain = 'outlook.com';
+    window.location.href = 'mailto:' + user + '@' + domain;
+  });
+</script>
 
 </body>
 </html>
