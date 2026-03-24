@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Year 7 Language Flashcards</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap');
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+font-family: ‘DM Sans’, sans-serif;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+transition: background 0.4s;
+padding: 20px;
+}
+
+body.lang-fr { background: #dce8f5; }
+body.lang-es { background: #f5edce; }
+body.lang-de { background: #f5ddd8; }
+body.lang-all { background: #e8e4e0; }
+
+h1 {
+font-family: ‘DM Serif Display’, serif;
+font-size: 1.6rem;
+margin-bottom: 4px;
+color: #2d2a26;
+text-align: center;
+}
+
+.subtitle { color: #888; font-size: 0.9rem; margin-bottom: 16px; text-align: center; }
+
+/* Controls */
+.controls {
+display: flex;
+gap: 8px;
+margin-bottom: 16px;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+.btn {
+padding: 8px 18px;
+border: 2px solid #d4cdc7;
+border-radius: 24px;
+background: white;
+cursor: pointer;
+font-family: ‘DM Sans’, sans-serif;
+font-weight: 500;
+font-size: 0.9rem;
+transition: all 0.2s;
+color: #5a5550;
+}
+.btn:hover { border-color: #999; }
+.btn.active-fr { background: #2c5f8a; color: white; border-color: #2c5f8a; }
+.btn.active-es { background: #b84c3c; color: white; border-color: #b84c3c; }
+.btn.active-de { background: #c49a2a; color: white; border-color: #c49a2a; }
+.btn.active-all { background: #6b6560; color: white; border-color: #6b6560; }
+
+.category-controls {
+display: flex;
+gap: 6px;
+margin-bottom: 16px;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+.cat-btn {
+padding: 5px 14px;
+border: 1.5px solid #d4cdc7;
+border-radius: 16px;
+background: white;
+cursor: pointer;
+font-family: ‘DM Sans’, sans-serif;
+font-size: 0.8rem;
+color: #777;
+transition: all 0.2s;
+}
+.cat-btn:hover { border-color: #999; }
+.cat-btn.active { background: #2d2a26; color: white; border-color: #2d2a26; }
+
+/* Progress */
+.progress-bar {
+width: 100%;
+max-width: 420px;
+height: 6px;
+background: rgba(255,255,255,0.5);
+border-radius: 3px;
+margin-bottom: 10px;
+overflow: hidden;
+}
+.progress-fill {
+height: 100%;
+border-radius: 3px;
+transition: width 0.3s;
+background: #2d2a26;
+}
+
+.progress-text {
+font-size: 0.8rem;
+color: #999;
+margin-bottom: 16px;
+text-align: center;
+}
+
+/* Card */
+.card-container {
+perspective: 1000px;
+width: 100%;
+max-width: 420px;
+height: 260px;
+margin-bottom: 20px;
+cursor: pointer;
+}
+
+.card-inner {
+position: relative;
+width: 100%;
+height: 100%;
+transition: transform 0.5s;
+transform-style: preserve-3d;
+}
+
+.card-inner.flipped { transform: rotateY(180deg); }
+
+.card-front, .card-back {
+position: absolute;
+width: 100%;
+height: 100%;
+backface-visibility: hidden;
+border-radius: 20px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 30px;
+box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.card-front {
+background: white;
+}
+
+.card-back {
+background: #fafafa;
+transform: rotateY(180deg);
+}
+
+.card-lang-label {
+position: absolute;
+top: 14px;
+left: 18px;
+font-size: 0.7rem;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 1px;
+padding: 3px 10px;
+border-radius: 10px;
+}
+
+.label-fr { background: #dce8f5; color: #2c5f8a; }
+.label-es { background: #f5edce; color: #b84c3c; }
+.label-de { background: #f5ddd8; color: #8a3a2e; }
+
+.card-category {
+position: absolute;
+top: 14px;
+right: 18px;
+font-size: 0.7rem;
+color: #ccc;
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+
+.card-word {
+font-family: ‘DM Serif Display’, serif;
+font-size: 2rem;
+text-align: center;
+color: #2d2a26;
+line-height: 1.3;
+}
+
+.card-pronunciation {
+font-size: 0.85rem;
+color: #bbb;
+font-style: italic;
+margin-top: 8px;
+text-align: center;
+}
+
+.card-hint {
+position: absolute;
+bottom: 16px;
+font-size: 0.75rem;
+color: #ccc;
+}
+
+/* Navigation */
+.nav-row {
+display: flex;
+gap: 10px;
+align-items: center;
+margin-bottom: 16px;
+}
+
+.nav-btn {
+width: 48px;
+height: 48px;
+border-radius: 50%;
+border: 2px solid #d4cdc7;
+background: white;
+cursor: pointer;
+font-size: 1.2rem;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: all 0.2s;
+color: #666;
+}
+.nav-btn:hover { border-color: #999; background: #f5f5f5; }
+.nav-btn:disabled { opacity: 0.3; cursor: default; }
+
+.know-btns {
+display: flex;
+gap: 10px;
+justify-content: center;
+}
+
+.know-btn {
+padding: 10px 24px;
+border-radius: 24px;
+border: 2px solid;
+font-family: ‘DM Sans’, sans-serif;
+font-weight: 600;
+font-size: 0.9rem;
+cursor: pointer;
+transition: all 0.2s;
+}
+
+.know-btn.yes {
+border-color: #5a9a6a;
+color: #5a9a6a;
+background: white;
+}
+.know-btn.yes:hover { background: #5a9a6a; color: white; }
+
+.know-btn.no {
+border-color: #c47a6a;
+color: #c47a6a;
+background: white;
+}
+.know-btn.no:hover { background: #c47a6a; color: white; }
+
+.shuffle-btn {
+margin-top: 10px;
+padding: 6px 16px;
+border: 1.5px solid #d4cdc7;
+border-radius: 16px;
+background: white;
+cursor: pointer;
+font-family: ‘DM Sans’, sans-serif;
+font-size: 0.8rem;
+color: #999;
+transition: all 0.2s;
+}
+.shuffle-btn:hover { border-color: #999; }
+
+.score-summary {
+text-align: center;
+margin-top: 12px;
+font-size: 0.85rem;
+color: #999;
+}
+
+.score-summary span { font-weight: 700; }
+.score-green { color: #5a9a6a; }
+.score-red { color: #c47a6a; }
+
+.done-msg {
+text-align: center;
+padding: 40px;
+}
+.done-msg h2 {
+font-family: ‘DM Serif Display’, serif;
+font-size: 1.5rem;
+margin-bottom: 8px;
+color: #2d2a26;
+}
+.done-msg p { color: #888; margin-bottom: 16px; }
+
+@media (max-width: 480px) {
+.card-word { font-size: 1.5rem; }
+.card-container { height: 220px; }
+}
+</style>
+
+</head>
+<body class="lang-all">
+
+<h1>Year 7 Flashcards 🐨</h1>
+<p class="subtitle">Tap the card to flip it</p>
+
+<div class="controls" id="langControls"></div>
+<div class="category-controls" id="catControls"></div>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="progress-text" id="progressText">0 / 0</div>
+
+<div class="card-container" id="cardContainer" onclick="flipCard()">
+  <div class="card-inner" id="cardInner">
+    <div class="card-front">
+      <div class="card-lang-label" id="frontLabel"></div>
+      <div class="card-category" id="frontCat"></div>
+      <div class="card-word" id="frontWord"></div>
+      <div class="card-hint">tap to flip</div>
+    </div>
+    <div class="card-back">
+      <div class="card-lang-label" id="backLabel"></div>
+      <div class="card-category" id="backCat"></div>
+      <div class="card-word" id="backWord"></div>
+      <div class="card-pronunciation" id="backPron"></div>
+      <div class="card-hint">tap to flip back</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav-row">
+  <button class="nav-btn" onclick="prevCard()" id="prevBtn">&larr;</button>
+  <div class="know-btns">
+    <button class="know-btn no" onclick="markCard(false)">Still learning</button>
+    <button class="know-btn yes" onclick="markCard(true)">Got it!</button>
+  </div>
+  <button class="nav-btn" onclick="nextCard()" id="nextBtn">&rarr;</button>
+</div>
+
+<button class="shuffle-btn" onclick="shuffleDeck()">Shuffle deck</button>
+
+<div class="score-summary" id="scoreSummary"></div>
+
+<div class="done-msg" id="doneMsg" style="display:none">
+  <h2>Deck complete! 🎉</h2>
+  <p id="doneText"></p>
+  <button class="btn" onclick="resetDeck()">Go again</button>
+  <button class="btn" onclick="reviewMissed()" id="reviewBtn" style="margin-left:8px">Review missed cards</button>
+</div>
+
+<script>
+const allCards = [
+  // FRENCH - Greetings
+  {lang:'fr', cat:'Greetings', foreign:'Bonjour', english:'Hello', pron:'bon-ZHOOR'},
+  {lang:'fr', cat:'Greetings', foreign:'Au revoir', english:'Goodbye', pron:'oh ruh-VWAHR'},
+  {lang:'fr', cat:'Greetings', foreign:"S'il vous plaît", english:'Please', pron:'seel voo PLEH'},
+  {lang:'fr', cat:'Greetings', foreign:'Merci', english:'Thank you', pron:'mair-SEE'},
+  {lang:'fr', cat:'Greetings', foreign:'Oui / Non', english:'Yes / No', pron:'wee / non'},
+  {lang:'fr', cat:'Greetings', foreign:'Excusez-moi', english:'Excuse me', pron:'ex-koo-ZAY mwah'},
+  {lang:'fr', cat:'Greetings', foreign:'Comment ça va ?', english:'How are you?', pron:'koh-MON sah vah'},
+  {lang:'fr', cat:'Greetings', foreign:'Ça va bien', english:"I'm fine", pron:'sah vah bee-EN'},
+  {lang:'fr', cat:'Greetings', foreign:'Je m\'appelle...', english:'My name is...', pron:'zhuh mah-PEL'},
+  {lang:'fr', cat:'Greetings', foreign:'Bonsoir', english:'Good evening', pron:'bon-SWAHR'},
+  // FRENCH - Colours
+  {lang:'fr', cat:'Colours', foreign:'rouge', english:'red', pron:'roozh'},
+  {lang:'fr', cat:'Colours', foreign:'bleu(e)', english:'blue', pron:'bluh'},
+  {lang:'fr', cat:'Colours', foreign:'vert(e)', english:'green', pron:'vair(t)'},
+  {lang:'fr', cat:'Colours', foreign:'jaune', english:'yellow', pron:'zhohn'},
+  {lang:'fr', cat:'Colours', foreign:'orange', english:'orange', pron:'oh-RONZH'},
+  {lang:'fr', cat:'Colours', foreign:'violet(te)', english:'purple', pron:'vee-oh-LEH(t)'},
+  {lang:'fr', cat:'Colours', foreign:'rose', english:'pink', pron:'rohz'},
+  {lang:'fr', cat:'Colours', foreign:'noir(e)', english:'black', pron:'nwahr'},
+  {lang:'fr', cat:'Colours', foreign:'blanc(he)', english:'white', pron:'blon(sh)'},
+  {lang:'fr', cat:'Colours', foreign:'marron', english:'brown', pron:'mah-RON'},
+  {lang:'fr', cat:'Colours', foreign:'gris(e)', english:'grey', pron:'gree(z)'},
+  // FRENCH - Numbers
+  {lang:'fr', cat:'Numbers', foreign:'un', english:'1', pron:'uhn'},
+  {lang:'fr', cat:'Numbers', foreign:'deux', english:'2', pron:'duh'},
+  {lang:'fr', cat:'Numbers', foreign:'trois', english:'3', pron:'trwah'},
+  {lang:'fr', cat:'Numbers', foreign:'quatre', english:'4', pron:'katr'},
+  {lang:'fr', cat:'Numbers', foreign:'cinq', english:'5', pron:'sank'},
+  {lang:'fr', cat:'Numbers', foreign:'six', english:'6', pron:'sees'},
+  {lang:'fr', cat:'Numbers', foreign:'sept', english:'7', pron:'set'},
+  {lang:'fr', cat:'Numbers', foreign:'huit', english:'8', pron:'weet'},
+  {lang:'fr', cat:'Numbers', foreign:'neuf', english:'9', pron:'nuf'},
+  {lang:'fr', cat:'Numbers', foreign:'dix', english:'10', pron:'dees'},
+  // FRENCH - Days
+  {lang:'fr', cat:'Days', foreign:'lundi', english:'Monday', pron:'luhn-DEE'},
+  {lang:'fr', cat:'Days', foreign:'mardi', english:'Tuesday', pron:'mar-DEE'},
+  {lang:'fr', cat:'Days', foreign:'mercredi', english:'Wednesday', pron:'mair-kruh-DEE'},
+  {lang:'fr', cat:'Days', foreign:'jeudi', english:'Thursday', pron:'zhuh-DEE'},
+  {lang:'fr', cat:'Days', foreign:'vendredi', english:'Friday', pron:'von-druh-DEE'},
+  {lang:'fr', cat:'Days', foreign:'samedi', english:'Saturday', pron:'sam-DEE'},
+  {lang:'fr', cat:'Days', foreign:'dimanche', english:'Sunday', pron:'dee-MONSH'},
+  // FRENCH - Phrases
+  {lang:'fr', cat:'Phrases', foreign:"J'adore les koalas", english:'I love koalas', pron:'zhah-DOR lay koh-ah-lah'},
+  {lang:'fr', cat:'Phrases', foreign:'Je voudrais un biscuit au chocolat', english:'I would like a chocolate biscuit', pron:'zhuh voo-DREH uhn biss-KWEE oh shoh-koh-LAH'},
+  {lang:'fr', cat:'Phrases', foreign:'des pâtes au fromage', english:'Pasta with cheese', pron:'day PAHT oh froh-MAHZH'},
+  {lang:'fr', cat:'Phrases', foreign:"J'aime tricoter", english:'I enjoy knitting', pron:'zhem tree-koh-TAY'},
+  {lang:'fr', cat:'Phrases', foreign:'un orphelin victorien angoissé', english:'Anguished Victorian orphan', pron:'uhn or-fuh-LAN vik-tor-ee-EN on-gwah-SAY'},
+
+  // SPANISH - Greetings
+  {lang:'es', cat:'Greetings', foreign:'Hola', english:'Hello', pron:'OH-lah'},
+  {lang:'es', cat:'Greetings', foreign:'Adiós', english:'Goodbye', pron:'ah-dee-OSS'},
+  {lang:'es', cat:'Greetings', foreign:'Por favor', english:'Please', pron:'por fah-VOR'},
+  {lang:'es', cat:'Greetings', foreign:'Gracias', english:'Thank you', pron:'GRAH-thee-ass'},
+  {lang:'es', cat:'Greetings', foreign:'Sí / No', english:'Yes / No', pron:'see / noh'},
+  {lang:'es', cat:'Greetings', foreign:'Perdón', english:'Excuse me', pron:'pair-DON'},
+  {lang:'es', cat:'Greetings', foreign:'¿Cómo estás?', english:'How are you?', pron:'KOH-moh ess-TASS'},
+  {lang:'es', cat:'Greetings', foreign:'Estoy bien', english:"I'm fine", pron:'ess-TOY bee-EN'},
+  {lang:'es', cat:'Greetings', foreign:'Me llamo...', english:'My name is...', pron:'meh YAH-moh'},
+  {lang:'es', cat:'Greetings', foreign:'Buenas noches', english:'Good evening', pron:'BWEH-nass NOH-chess'},
+  // SPANISH - Colours
+  {lang:'es', cat:'Colours', foreign:'rojo/a', english:'red', pron:'ROH-hoh'},
+  {lang:'es', cat:'Colours', foreign:'azul', english:'blue', pron:'ah-THOOL'},
+  {lang:'es', cat:'Colours', foreign:'verde', english:'green', pron:'VAIR-deh'},
+  {lang:'es', cat:'Colours', foreign:'amarillo/a', english:'yellow', pron:'ah-mah-REE-yoh'},
+  {lang:'es', cat:'Colours', foreign:'naranja', english:'orange', pron:'nah-RAN-hah'},
+  {lang:'es', cat:'Colours', foreign:'morado/a', english:'purple', pron:'moh-RAH-doh'},
+  {lang:'es', cat:'Colours', foreign:'rosa', english:'pink', pron:'ROH-sah'},
+  {lang:'es', cat:'Colours', foreign:'negro/a', english:'black', pron:'NEH-groh'},
+  {lang:'es', cat:'Colours', foreign:'blanco/a', english:'white', pron:'BLAN-koh'},
+  {lang:'es', cat:'Colours', foreign:'marrón', english:'brown', pron:'mah-RRON'},
+  {lang:'es', cat:'Colours', foreign:'gris', english:'grey', pron:'grees'},
+  // SPANISH - Numbers
+  {lang:'es', cat:'Numbers', foreign:'uno', english:'1', pron:'OO-noh'},
+  {lang:'es', cat:'Numbers', foreign:'dos', english:'2', pron:'doss'},
+  {lang:'es', cat:'Numbers', foreign:'tres', english:'3', pron:'tress'},
+  {lang:'es', cat:'Numbers', foreign:'cuatro', english:'4', pron:'KWAH-troh'},
+  {lang:'es', cat:'Numbers', foreign:'cinco', english:'5', pron:'THIN-koh'},
+  {lang:'es', cat:'Numbers', foreign:'seis', english:'6', pron:'sayss'},
+  {lang:'es', cat:'Numbers', foreign:'siete', english:'7', pron:'see-EH-teh'},
+  {lang:'es', cat:'Numbers', foreign:'ocho', english:'8', pron:'OH-choh'},
+  {lang:'es', cat:'Numbers', foreign:'nueve', english:'9', pron:'NWEH-veh'},
+  {lang:'es', cat:'Numbers', foreign:'diez', english:'10', pron:'dee-ETH'},
+  // SPANISH - Days
+  {lang:'es', cat:'Days', foreign:'lunes', english:'Monday', pron:'LOO-ness'},
+  {lang:'es', cat:'Days', foreign:'martes', english:'Tuesday', pron:'MAR-tess'},
+  {lang:'es', cat:'Days', foreign:'miércoles', english:'Wednesday', pron:'mee-AIR-koh-less'},
+  {lang:'es', cat:'Days', foreign:'jueves', english:'Thursday', pron:'HWEH-vess'},
+  {lang:'es', cat:'Days', foreign:'viernes', english:'Friday', pron:'vee-AIR-ness'},
+  {lang:'es', cat:'Days', foreign:'sábado', english:'Saturday', pron:'SAH-bah-doh'},
+  {lang:'es', cat:'Days', foreign:'domingo', english:'Sunday', pron:'doh-MEEN-goh'},
+  // SPANISH - Phrases
+  {lang:'es', cat:'Phrases', foreign:'Me encantan los koalas', english:'I love koalas', pron:'meh en-KAN-tan loss koh-AH-lass'},
+  {lang:'es', cat:'Phrases', foreign:'Me gustaría una galleta de chocolate', english:'I would like a chocolate biscuit', pron:'meh goo-stah-REE-ah OO-nah gah-YEH-tah deh choh-koh-LAH-teh'},
+  {lang:'es', cat:'Phrases', foreign:'pasta con queso', english:'Pasta with cheese', pron:'PAH-stah kon KEH-soh'},
+  {lang:'es', cat:'Phrases', foreign:'Me gusta tejer', english:'I enjoy knitting', pron:'meh GOO-stah teh-HAIR'},
+  {lang:'es', cat:'Phrases', foreign:'un huérfano victoriano angustiado', english:'Anguished Victorian orphan', pron:'oon WAIR-fah-noh vik-tor-ee-AH-noh an-goo-stee-AH-doh'},
+
+  // GERMAN - Greetings
+  {lang:'de', cat:'Greetings', foreign:'Hallo', english:'Hello', pron:'HAH-loh'},
+  {lang:'de', cat:'Greetings', foreign:'Tschüss', english:'Goodbye', pron:'chooss'},
+  {lang:'de', cat:'Greetings', foreign:'Bitte', english:'Please', pron:'BIT-uh'},
+  {lang:'de', cat:'Greetings', foreign:'Danke', english:'Thank you', pron:'DAN-kuh'},
+  {lang:'de', cat:'Greetings', foreign:'Ja / Nein', english:'Yes / No', pron:'yah / nine'},
+  {lang:'de', cat:'Greetings', foreign:'Entschuldigung', english:'Excuse me', pron:'ent-SHOOL-dee-goong'},
+  {lang:'de', cat:'Greetings', foreign:'Wie geht es dir?', english:'How are you?', pron:'vee gayt ess deer'},
+  {lang:'de', cat:'Greetings', foreign:'Mir geht es gut', english:"I'm fine", pron:'meer gayt ess goot'},
+  {lang:'de', cat:'Greetings', foreign:'Ich heiße...', english:'My name is...', pron:'ikh HY-suh'},
+  {lang:'de', cat:'Greetings', foreign:'Guten Abend', english:'Good evening', pron:'GOO-ten AH-bent'},
+  // GERMAN - Colours
+  {lang:'de', cat:'Colours', foreign:'rot', english:'red', pron:'roht'},
+  {lang:'de', cat:'Colours', foreign:'blau', english:'blue', pron:'blow'},
+  {lang:'de', cat:'Colours', foreign:'grün', english:'green', pron:'groon'},
+  {lang:'de', cat:'Colours', foreign:'gelb', english:'yellow', pron:'gelp'},
+  {lang:'de', cat:'Colours', foreign:'orange', english:'orange', pron:'oh-RONZH'},
+  {lang:'de', cat:'Colours', foreign:'lila', english:'purple', pron:'LEE-lah'},
+  {lang:'de', cat:'Colours', foreign:'rosa', english:'pink', pron:'ROH-zah'},
+  {lang:'de', cat:'Colours', foreign:'schwarz', english:'black', pron:'shvarts'},
+  {lang:'de', cat:'Colours', foreign:'weiß', english:'white', pron:'vice'},
+  {lang:'de', cat:'Colours', foreign:'braun', english:'brown', pron:'brown'},
+  {lang:'de', cat:'Colours', foreign:'grau', english:'grey', pron:'grow'},
+  // GERMAN - Numbers
+  {lang:'de', cat:'Numbers', foreign:'eins', english:'1', pron:'aynss'},
+  {lang:'de', cat:'Numbers', foreign:'zwei', english:'2', pron:'tsvy'},
+  {lang:'de', cat:'Numbers', foreign:'drei', english:'3', pron:'dry'},
+  {lang:'de', cat:'Numbers', foreign:'vier', english:'4', pron:'feer'},
+  {lang:'de', cat:'Numbers', foreign:'fünf', english:'5', pron:'foonf'},
+  {lang:'de', cat:'Numbers', foreign:'sechs', english:'6', pron:'zex'},
+  {lang:'de', cat:'Numbers', foreign:'sieben', english:'7', pron:'ZEE-ben'},
+  {lang:'de', cat:'Numbers', foreign:'acht', english:'8', pron:'akht'},
+  {lang:'de', cat:'Numbers', foreign:'neun', english:'9', pron:'noyn'},
+  {lang:'de', cat:'Numbers', foreign:'zehn', english:'10', pron:'tsayn'},
+  // GERMAN - Days
+  {lang:'de', cat:'Days', foreign:'Montag', english:'Monday', pron:'MOHN-tahg'},
+  {lang:'de', cat:'Days', foreign:'Dienstag', english:'Tuesday', pron:'DEENS-tahg'},
+  {lang:'de', cat:'Days', foreign:'Mittwoch', english:'Wednesday', pron:'MIT-vokh'},
+  {lang:'de', cat:'Days', foreign:'Donnerstag', english:'Thursday', pron:'DON-ers-tahg'},
+  {lang:'de', cat:'Days', foreign:'Freitag', english:'Friday', pron:'FRY-tahg'},
+  {lang:'de', cat:'Days', foreign:'Samstag', english:'Saturday', pron:'ZAMS-tahg'},
+  {lang:'de', cat:'Days', foreign:'Sonntag', english:'Sunday', pron:'ZON-tahg'},
+  // GERMAN - Phrases
+  {lang:'de', cat:'Phrases', foreign:'Ich liebe Koalas', english:'I love koalas', pron:'ikh LEE-buh koh-AH-lass'},
+  {lang:'de', cat:'Phrases', foreign:'Ich hätte gerne einen Schokoladenkeks', english:'I would like a chocolate biscuit', pron:'ikh HET-uh GAIR-nuh EYE-nen shoh-koh-LAH-den-keks'},
+  {lang:'de', cat:'Phrases', foreign:'Nudeln mit Käse', english:'Pasta with cheese', pron:'NOO-deln mit KAY-zuh'},
+  {lang:'de', cat:'Phrases', foreign:'Ich stricke gerne', english:'I enjoy knitting', pron:'ikh SHTRIK-uh GAIR-nuh'},
+  {lang:'de', cat:'Phrases', foreign:'ein gequältes viktorianisches Waisenkind', english:'Anguished Victorian orphan', pron:'ayn geh-KVELT-ess vik-tor-ee-AH-nish-ess VY-zen-kint'},
+];
+
+let currentLang = 'all';
+let currentCat = 'All';
+let deck = [];
+let idx = 0;
+let scores = {}; // cardIndex -> true/false
+let isFlipped = false;
+
+const categories = ['All', 'Greetings', 'Colours', 'Numbers', 'Days', 'Phrases'];
+const langNames = {fr:'French', es:'Spanish', de:'German', all:'All Languages'};
+const langLabels = {fr:'🇫🇷 FR', es:'🇪🇸 ES', de:'🇩🇪 DE'};
+
+function buildControls() {
+  const lc = document.getElementById('langControls');
+  ['all','fr','es','de'].forEach(l => {
+    const b = document.createElement('button');
+    b.className = 'btn' + (l === currentLang ? ` active-${l}` : '');
+    b.textContent = l === 'all' ? 'All Languages' : {fr:'🇫🇷 French', es:'🇪🇸 Spanish', de:'🇩🇪 German'}[l];
+    b.onclick = () => setLang(l);
+    b.id = 'langBtn-' + l;
+    lc.appendChild(b);
+  });
+
+  const cc = document.getElementById('catControls');
+  categories.forEach(cat => {
+    const b = document.createElement('button');
+    b.className = 'cat-btn' + (cat === currentCat ? ' active' : '');
+    b.textContent = cat;
+    b.onclick = () => setCat(cat);
+    b.id = 'catBtn-' + cat;
+    cc.appendChild(b);
+  });
+}
+
+function setLang(l) {
+  currentLang = l;
+  document.body.className = 'lang-' + l;
+  document.querySelectorAll('#langControls .btn').forEach(b => b.className = 'btn');
+  document.getElementById('langBtn-' + l).className = 'btn active-' + l;
+  buildDeck();
+}
+
+function setCat(cat) {
+  currentCat = cat;
+  document.querySelectorAll('#catControls .cat-btn').forEach(b => b.className = 'cat-btn');
+  document.getElementById('catBtn-' + cat).className = 'cat-btn active';
+  buildDeck();
+}
+
+function buildDeck() {
+  deck = allCards.filter(c => {
+    if (currentLang !== 'all' && c.lang !== currentLang) return false;
+    if (currentCat !== 'All' && c.cat !== currentCat) return false;
+    return true;
+  });
+  idx = 0;
+  scores = {};
+  isFlipped = false;
+  document.getElementById('doneMsg').style.display = 'none';
+  document.getElementById('cardContainer').style.display = 'block';
+  showCard();
+}
+
+function showCard() {
+  if (deck.length === 0) {
+    document.getElementById('frontWord').textContent = 'No cards match';
+    document.getElementById('progressText').textContent = '0 / 0';
+    return;
+  }
+
+  const card = deck[idx];
+  isFlipped = false;
+  document.getElementById('cardInner').classList.remove('flipped');
+
+  // Front - show foreign word
+  document.getElementById('frontWord').textContent = card.foreign;
+  const fl = document.getElementById('frontLabel');
+  fl.textContent = langLabels[card.lang];
+  fl.className = 'card-lang-label label-' + card.lang;
+  document.getElementById('frontCat').textContent = card.cat;
+
+  // Back - show english
+  document.getElementById('backWord').textContent = card.english;
+  document.getElementById('backPron').textContent = card.pron;
+  const bl = document.getElementById('backLabel');
+  bl.textContent = langLabels[card.lang];
+  bl.className = 'card-lang-label label-' + card.lang;
+  document.getElementById('backCat').textContent = card.cat;
+
+  // Progress
+  const answered = Object.keys(scores).length;
+  document.getElementById('progressFill').style.width = (answered / deck.length * 100) + '%';
+  document.getElementById('progressText').textContent = `${answered} / ${deck.length} answered`;
+
+  // Score summary
+  const got = Object.values(scores).filter(v => v).length;
+  const missed = Object.values(scores).filter(v => !v).length;
+  document.getElementById('scoreSummary').innerHTML =
+    `<span class="score-green">${got} got it</span> · <span class="score-red">${missed} still learning</span>`;
+
+  // Nav buttons
+  document.getElementById('prevBtn').disabled = idx === 0;
+  document.getElementById('nextBtn').disabled = idx >= deck.length - 1;
+}
+
+function flipCard() {
+  isFlipped = !isFlipped;
+  document.getElementById('cardInner').classList.toggle('flipped');
+}
+
+function markCard(known) {
+  scores[idx] = known;
+  if (idx < deck.length - 1) {
+    idx++;
+    showCard();
+  } else {
+    // Done!
+    showDone();
+  }
+}
+
+function showDone() {
+  const got = Object.values(scores).filter(v => v).length;
+  const total = deck.length;
+  document.getElementById('cardContainer').style.display = 'none';
+  document.getElementById('doneMsg').style.display = 'block';
+  document.getElementById('doneText').textContent =
+    `You got ${got} out of ${total} cards! ${got === total ? 'Perfect! 🌟' : 'Keep practising — you\'re getting there!'}`;
+  document.getElementById('reviewBtn').style.display = (total - got > 0) ? 'inline-block' : 'none';
+
+  // Update progress
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('progressText').textContent = `${total} / ${total} answered`;
+  const missed = total - got;
+  document.getElementById('scoreSummary').innerHTML =
+    `<span class="score-green">${got} got it</span> · <span class="score-red">${missed} still learning</span>`;
+}
+
+function resetDeck() {
+  buildDeck();
+}
+
+function reviewMissed() {
+  const missedCards = deck.filter((_, i) => scores[i] === false);
+  deck = missedCards;
+  idx = 0;
+  scores = {};
+  isFlipped = false;
+  document.getElementById('doneMsg').style.display = 'none';
+  document.getElementById('cardContainer').style.display = 'block';
+  showCard();
+}
+
+function nextCard() {
+  if (idx < deck.length - 1) { idx++; showCard(); }
+}
+
+function prevCard() {
+  if (idx > 0) { idx--; showCard(); }
+}
+
+function shuffleDeck() {
+  for (let i = deck.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [deck[i], deck[j]] = [deck[j], deck[i]];
+  }
+  idx = 0;
+  scores = {};
+  showCard();
+}
+
+// Keyboard support
+document.addEventListener('keydown', (e) => {
+  if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); flipCard(); }
+  if (e.key === 'ArrowRight') nextCard();
+  if (e.key === 'ArrowLeft') prevCard();
+  if (e.key === 'y' || e.key === 'Y') markCard(true);
+  if (e.key === 'n' || e.key === 'N') markCard(false);
+});
+
+buildControls();
+buildDeck();
+</script>
+
+</body>
+</html>
