@@ -317,13 +317,13 @@ color: #2d2a26;
       <div class="card-lang-label" id="frontLabel"></div>
       <div class="card-category" id="frontCat"></div>
       <div class="card-word" id="frontWord"></div>
+      <div class="card-pronunciation" id="frontPron"></div>
       <div class="card-hint">tap to flip</div>
     </div>
     <div class="card-back">
       <div class="card-lang-label" id="backLabel"></div>
       <div class="card-category" id="backCat"></div>
       <div class="card-word" id="backWord"></div>
-      <div class="card-pronunciation" id="backPron"></div>
       <div class="card-hint">tap to flip back</div>
     </div>
   </div>
@@ -574,6 +574,7 @@ function showCard() {
 
   // Front - show foreign word
   document.getElementById('frontWord').textContent = card.foreign;
+  document.getElementById('frontPron').textContent = card.pron;
   const fl = document.getElementById('frontLabel');
   fl.textContent = langLabels[card.lang];
   fl.className = 'card-lang-label label-' + card.lang;
@@ -581,7 +582,6 @@ function showCard() {
 
   // Back - show english
   document.getElementById('backWord').textContent = card.english;
-  document.getElementById('backPron').textContent = card.pron;
   const bl = document.getElementById('backLabel');
   bl.textContent = langLabels[card.lang];
   bl.className = 'card-lang-label label-' + card.lang;
