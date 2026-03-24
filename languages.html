@@ -533,11 +533,32 @@ function buildControls() {
 }
 
 function setLang(l) {
+  // Remember what word we're currently looking at
+  const currentCard = deck.length > 0 ? deck[idx] : null;
+  
   currentLang = l;
   document.body.className = 'lang-' + l;
   document.querySelectorAll('#langControls .btn').forEach(b => b.className = 'btn');
   document.getElementById('langBtn-' + l).className = 'btn active-' + l;
-  buildDeck();
+  
+  // Rebuild deck
+  deck = allCards.filter(c => {
+    if (currentLang !== 'all' && c.lang !== currentLang) return false;
+    if (currentCat !== 'All' && c.cat !== currentCat) return false;
+    return true;
+  });
+  scores = {};
+  isFlipped = false;
+  document.getElementById('doneMsg').style.display = 'none';
+  document.getElementById('cardContainer').style.display = 'block';
+  
+  // Try to find the same word (by english + category) in the new deck
+  idx = 0;
+  if (currentCard) {
+    const match = deck.findIndex(c => c.english === currentCard.english && c.cat === currentCard.cat);
+    if (match >= 0) idx = match;
+  }
+  showCard();
 }
 
 function setCat(cat) {
